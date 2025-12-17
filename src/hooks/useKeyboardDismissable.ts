@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { BackHandler } from 'react-native';
+import { BackHandler, Platform } from 'react-native';
 
 type IParams = {
   enabled?: boolean;
@@ -44,6 +44,11 @@ export const useKeyboardDismissable = ({ enabled, callback }: IParams) => {
 
 export function useBackHandler({ enabled, callback }: IParams) {
   useEffect(() => {
+    // BackHandler is android only: https://reactnative.dev/docs/0.79/backhandler
+    if (Platform.OS !== 'android') {
+      return;
+    }
+
     let subscription: { remove: () => void } | null = null;
 
     const backHandler = () => {
@@ -51,8 +56,10 @@ export function useBackHandler({ enabled, callback }: IParams) {
       return true;
     };
     if (enabled) {
-      // Nova API (RN ≥0.65)
-      subscription = BackHandler.addEventListener('hardwareBackPress', backHandler);
+      subscription = BackHandler.addEventListener(
+        'hardwareBackPress',
+        backHandler
+      );
     }
 
     return () => {
