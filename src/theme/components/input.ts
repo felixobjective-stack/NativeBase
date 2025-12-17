@@ -17,7 +17,7 @@ const baseStyle = (props: InterfaceInputProps & { theme: any }) => {
       },
     },
     _web: {
-      outlineWidth: '0',
+      outlineWidth: 0,
       overflow: 'auto',
       lineHeight: 'lg', // Todo: Move to _web inside size so that sm and xs don't have this much height
       style: { outline: 'none' },
@@ -47,7 +47,7 @@ const baseStyle = (props: InterfaceInputProps & { theme: any }) => {
       _hover: { borderColor: 'error.600' },
       _stack: {
         style: {
-          outlineWidth: '0',
+          outlineWidth: 0,
           boxShadow: `0 0 0 1px ${error[600]}`,
         },
       },
@@ -105,7 +105,7 @@ const baseStyle = (props: InterfaceInputProps & { theme: any }) => {
         borderColor: 'error.500',
         _stack: {
           style: {
-            outlineWidth: '0',
+            outlineWidth: 0,
             boxShadow: `0 0 0 1px ${error[500]}`,
           },
         },
